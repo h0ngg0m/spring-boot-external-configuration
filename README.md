@@ -33,3 +33,19 @@ OS 환경 변수는 해당 OS를 사용하는 모든 프로그램에서 읽을 �
 - 우선순위는 상식 선에서 2가지를 기억하면 된다.
   - 더 유연한 것이 우선권을 가진다. (변경하기 어려운 파일보다 실행 시 원하는 값을 줄 수 있는 자바 시스템 속성이 우선권을 가진다.)
   - 범위가 넓은 것보다 좁은 것이 우선권을 가진다. (OS 환경변수보다 자바 시스템 속성이 우선권을 가진다.)
+
+### 실행 시점에 내부 설정 파일 조회
+- 예)
+  - `application-local.yml` -> 로컬 환경에서 사용
+  - `application-dev.yml` -> 개발 환경에서 사용
+  - `application-prod.yml` -> 운영 환경에서 사용
+- 프로필
+  - 스프링은 위와 같이 환경에 따라 설정 파일을 나눠서 사용할 수 있는 기능을 제공하는데 프로필이라는 개념을 통해서 이를 구현한다.
+  - `spring.prfiels.active` 프로퍼티를 통해서 프로필을 지정할 수 있다.
+    - `application-{profile}.yml`
+- 실행
+  - IDE에서 커맨드 라인 옵션 인수 실행: `--spring.profiles.active=dev`
+  - IDE에서 자바 시스템 속성 실행: `-Dspring.profiles.active=dev`
+  - Jar 실행:
+    - `java -jar -Dspring.profiles.active=dev app.jar`
+    - `java -jar app.jar --spring.profiles.active=dev`
